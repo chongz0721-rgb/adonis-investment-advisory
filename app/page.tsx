@@ -24,6 +24,18 @@ type Article = {
   accent: string;
 };
 
+type Chapter = "top" | "firm" | "capabilities" | "leadership" | "insights" | "global" | "contact";
+
+const chapterMeta: Record<Chapter, { index: string; label: string }> = {
+  top: { index: "00", label: "Home" },
+  firm: { index: "01", label: "Our Firm" },
+  capabilities: { index: "02", label: "Capabilities" },
+  leadership: { index: "03", label: "Leadership" },
+  insights: { index: "04", label: "Insights" },
+  global: { index: "05", label: "Global Offices" },
+  contact: { index: "06", label: "Contact" },
+};
+
 const leaders: Leader[] = [
   {
     id: "adonis-yang",
@@ -230,8 +242,21 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeLeader, setActiveLeader] = useState<Leader | null>(null);
   const [activeArticle, setActiveArticle] = useState<Article | null>(null);
+  const [activeChapter, setActiveChapter] = useState<Chapter>("top");
+  const [transitionChapter, setTransitionChapter] = useState<Chapter>("top");
+  const [chapterTransitioning, setChapterTransitioning] = useState(false);
 
   const modalOpen = Boolean(activeLeader || activeArticle);
+
+  useEffect(() => {
+    const syncChapterFromLocation = () => {
+      const hash = window.location.hash.slice(1) as Chapter;
+      setActiveChapter(hash in chapterMeta ? hash : "top");
+    };
+    syncChapterFromLocation();
+    window.addEventListener("popstate", syncChapterFromLocation);
+    return () => window.removeEventListener("popstate", syncChapterFromLocation);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = modalOpen ? "hidden" : "";
@@ -256,9 +281,41 @@ export default function Home() {
   const closeOnBackdrop = (event: MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) closeModal();
   };
+  const openChapter = (chapter: Chapter) => {
+    closeMenu();
+    if (chapter === activeChapter) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+    setTransitionChapter(chapter);
+    setChapterTransitioning(true);
+    window.setTimeout(() => {
+      setActiveChapter(chapter);
+      const nextUrl = chapter === "top"
+        ? `${window.location.pathname}${window.location.search}`
+        : `${window.location.pathname}${window.location.search}#${chapter}`;
+      window.history.pushState({}, "", nextUrl);
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }, 360);
+    window.setTimeout(() => setChapterTransitioning(false), 820);
+  };
+  const handleChapterNavigation = (event: MouseEvent<HTMLElement>) => {
+    const target = event.target as HTMLElement;
+    const link = target.closest("a");
+    const href = link?.getAttribute("href");
+    if (!href?.startsWith("#")) return;
+    const chapter = href.slice(1) as Chapter;
+    if (!(chapter in chapterMeta)) return;
+    event.preventDefault();
+    openChapter(chapter);
+  };
 
   return (
-    <main>
+    <main
+      className="chapter-view"
+      data-chapter={activeChapter}
+      onClick={handleChapterNavigation}
+    >
       <div className="concept-ribbon">
         <span>Fictional concept website · Created for private entertainment</span>
         <span className="ribbon-domain">ADONIS-INVESTMENT-ADVISORY.COM</span>
@@ -287,7 +344,30 @@ export default function Home() {
         </button>
       </header>
 
-      <section className="hero" id="top">
+      <aside className="chapter-rail" aria-label="Section navigation">
+        {(Object.entries(chapterMeta) as [Chapter, { index: string; label: string }][]).map(([chapter, meta]) => (
+          <a
+            href={`#${chapter}`}
+            className={activeChapter === chapter ? "active" : ""}
+            aria-label={`Open ${meta.label}`}
+            key={chapter}
+          >
+            <span>{meta.index}</span>
+            <b>{meta.label}</b>
+          </a>
+        ))}
+      </aside>
+
+      <div
+        className={`chapter-transition ${chapterTransitioning ? "is-active" : ""}`}
+        aria-hidden="true"
+      >
+        <span>{chapterMeta[transitionChapter].index} / 06</span>
+        <strong>{chapterMeta[transitionChapter].label}</strong>
+        <i />
+      </div>
+
+      <section className="hero chapter-panel chapter-home" id="top">
         <div className="hero-grid" aria-hidden="true" />
         <div className="hero-glow hero-glow-one" aria-hidden="true" />
         <div className="hero-glow hero-glow-two" aria-hidden="true" />
@@ -342,7 +422,7 @@ export default function Home() {
         </a>
       </section>
 
-      <section className="brand-universe" aria-labelledby="universe-title">
+      <section className="brand-universe chapter-panel chapter-home" aria-labelledby="universe-title">
         <div className="section-shell">
           <div className="universe-heading">
             <p className="eyebrow" id="universe-title">Selected collaboration universe</p>
@@ -382,7 +462,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="firm-section" id="firm">
+      <section className="firm-section chapter-panel chapter-firm" id="firm">
         <div className="section-shell split-heading">
           <div>
             <p className="eyebrow">Our Firm</p>
@@ -437,7 +517,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="capabilities-section" id="capabilities">
+      <section className="capabilities-section chapter-panel chapter-capabilities" id="capabilities">
         <div className="section-shell">
           <div className="section-title-row">
             <div>
@@ -464,7 +544,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="leadership-section" id="leadership">
+      <section className="leadership-section chapter-panel chapter-leadership" id="leadership">
         <div className="section-shell">
           <div className="leadership-heading">
             <div>
@@ -484,7 +564,7 @@ export default function Home() {
                 onClick={() => setActiveLeader(leader)}
                 aria-label={`Read ${leader.name}'s biography`}
               >
-                <div className="leader-image">
+                <div className={`leader-image leader-image-${leader.id}`}>
                   <Image
                     src={assetUrl(leader.image)}
                     alt={`Portrait of ${leader.name}`}
@@ -509,7 +589,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="insights-section" id="insights">
+      <section className="insights-section chapter-panel chapter-insights" id="insights">
         <div className="section-shell">
           <div className="section-title-row dark-text">
             <div>
@@ -559,7 +639,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="global-section" id="global">
+      <section className="global-section chapter-panel chapter-global" id="global">
         <div className="section-shell">
           <div className="global-heading">
             <div>
@@ -658,7 +738,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="contact-section" id="contact">
+      <section className="contact-section chapter-panel chapter-contact" id="contact">
         <div className="contact-orbit" aria-hidden="true">
           <i />
           <i />
