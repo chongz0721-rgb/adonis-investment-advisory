@@ -1321,7 +1321,8 @@ h2 em {
 
 .leader-image-ryan-peng .leader-portrait {
   object-fit: cover;
-  object-position: center top;
+  object-position: center 18%;
+  transform: scale(1.24);
 }
 
 .leader-card:hover .leader-portrait {
@@ -1331,6 +1332,10 @@ h2 em {
 
 .leader-card:hover .leader-image-adonis-yang .leader-portrait {
   transform: scale(1.19);
+}
+
+.leader-card:hover .leader-image-ryan-peng .leader-portrait {
+  transform: scale(1.28);
 }
 
 .leader-number,
