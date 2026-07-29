@@ -50,6 +50,7 @@ const leaders: Leader[] = [
     name: "Adonis Yang",
     title: "Founder & Chief Executive Officer",
     image: "/assets/adonis-yang.png",
+    profileImage: "/assets/adonis-yang.png",
     education: [
       "B.S., Computer & Electrical Engineering — California Institute of Technology",
       "M.S. and Ph.D., Calculus & Applied Mathematical Systems — Massachusetts Institute of Technology",
@@ -72,6 +73,7 @@ const leaders: Leader[] = [
     name: "Tommy Chong",
     title: "Founder & Chief Business Officer",
     image: "/assets/tommy-chong-v2.png",
+    profileImage: "/assets/tommy-chong-profile-vertical.png",
     education: [
       "B.B.A., Business Administration — Peking University",
       "M.S., Business Analytics — The Wharton School, University of Pennsylvania",
@@ -506,6 +508,16 @@ export default function Home() {
           <div>
             <p className="eyebrow">Our Firm</p>
             <span className="section-index">01 — 06</span>
+            <div className="firm-editorial">
+              <Image
+                src={assetUrl("/assets/firm-manhattan-office.png")}
+                alt="A refined Manhattan executive office overlooking New York at blue hour"
+                fill
+                sizes="(max-width: 900px) 100vw, 34vw"
+                unoptimized
+              />
+              <span>NEW YORK / GLOBAL HEADQUARTERS</span>
+            </div>
           </div>
           <div className="firm-intro">
             <h2>Built for the decisions that <em>change trajectories.</em></h2>
@@ -898,7 +910,7 @@ export default function Home() {
             <div className={`profile-portrait profile-portrait-${activeLeader.id}`}>
               <Image
                 className="profile-main-image"
-                src={assetUrl(activeLeader.image)}
+                src={assetUrl(activeLeader.profileImage)}
                 alt={`Portrait of ${activeLeader.name}`}
                 fill
                 sizes="(max-width: 800px) 100vw, 42vw"

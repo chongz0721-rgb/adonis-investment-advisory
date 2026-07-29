@@ -905,6 +905,47 @@ h2 em {
   font-size: 9px;
 }
 
+.firm-editorial {
+  position: relative;
+  min-height: 360px;
+  margin-top: 56px;
+  overflow: hidden;
+  background: var(--navy-900);
+}
+
+.firm-editorial::after {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, transparent 52%, rgba(5, 14, 23, 0.6)),
+    linear-gradient(90deg, rgba(5, 14, 23, 0.18), transparent 45%);
+  content: "";
+}
+
+.firm-editorial img {
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(0.72) contrast(1.04);
+  transition: transform 900ms cubic-bezier(.2,.7,.2,1), filter 400ms ease;
+}
+
+.firm-editorial:hover img {
+  transform: scale(1.025);
+  filter: saturate(0.92) contrast(1.03);
+}
+
+.firm-editorial span {
+  position: absolute;
+  z-index: 1;
+  right: 22px;
+  bottom: 20px;
+  left: 22px;
+  color: var(--gold-soft);
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.16em;
+}
+
 .firm-intro h2 {
   max-width: 950px;
   margin-bottom: 52px;
@@ -2259,15 +2300,13 @@ footer {
 }
 
 .profile-portrait-tommy-chong {
-  background:
-    radial-gradient(circle at 50% 34%, rgba(244, 240, 232, 0.2), transparent 38%),
-    linear-gradient(145deg, #8f8379, #b8afa8);
+  background: #958b83;
 }
 
 .profile-portrait-tommy-chong .profile-main-image {
   z-index: 1;
-  object-fit: contain;
-  object-position: center;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .profile-portrait > span {
@@ -2596,6 +2635,11 @@ footer {
     gap: 50px;
   }
 
+  .firm-editorial {
+    min-height: 430px;
+    margin-top: 32px;
+  }
+
   .origin-panel {
     grid-template-columns: 1fr;
   }
@@ -2658,6 +2702,10 @@ footer {
     position: relative;
     top: 0;
     height: 68vh;
+  }
+
+  .profile-portrait-tommy-chong .profile-main-image {
+    object-position: center 14%;
   }
 
 }
@@ -2812,6 +2860,10 @@ footer {
 
   .firm-intro .large-copy {
     font-size: 22px;
+  }
+
+  .firm-editorial {
+    min-height: 280px;
   }
 
   .origin-copy {
