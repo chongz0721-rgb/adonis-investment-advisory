@@ -12,21 +12,25 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const publicSiteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  "https://adonis-investment-advisory.com";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://adonis-investment-advisory.com"),
+  metadataBase: new URL(publicSiteUrl),
   title: "Adonis Investment & Advisory | Conviction Beyond Consensus",
   description:
     "A fictional global investment and advisory firm concept — private capital, strategic intelligence and operating judgment across nine global cities.",
   openGraph: {
     title: "Adonis Investment & Advisory",
     description: "Conviction beyond consensus. A fictional global investment and advisory firm concept.",
-    images: [{ url: "/og.png", width: 1734, height: 907, alt: "Adonis Investment & Advisory" }],
+    images: [{ url: `${publicSiteUrl}/og.png`, width: 1734, height: 907, alt: "Adonis Investment & Advisory" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Adonis Investment & Advisory",
     description: "Conviction beyond consensus. A fictional global investment and advisory firm concept.",
-    images: ["/og.png"],
+    images: [`${publicSiteUrl}/og.png`],
   },
 };
 

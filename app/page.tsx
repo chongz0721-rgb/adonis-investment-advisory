@@ -211,6 +211,9 @@ const capabilities = [
   },
 ];
 
+const assetBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const assetUrl = (path: string) => `${assetBasePath}${path}`;
+
 function BrandMark({ light = false }: { light?: boolean }) {
   return (
     <span className={`brand-lockup ${light ? "brand-light" : ""}`}>
@@ -461,11 +464,12 @@ export default function Home() {
               >
                 <div className="leader-image">
                   <Image
-                    src={leader.image}
+                    src={assetUrl(leader.image)}
                     alt={`Portrait of ${leader.name}`}
                     fill
                     sizes="(max-width: 800px) 100vw, 50vw"
                     priority={index === 0}
+                    unoptimized
                   />
                   <span className="leader-number">0{index + 1}</span>
                   <span className="leader-open" aria-hidden="true">↗</span>
@@ -652,10 +656,11 @@ export default function Home() {
             <button className="modal-close" onClick={closeModal} aria-label="Close profile">×</button>
             <div className="profile-portrait">
               <Image
-                src={activeLeader.image}
+                src={assetUrl(activeLeader.image)}
                 alt={`Portrait of ${activeLeader.name}`}
                 fill
                 sizes="(max-width: 800px) 100vw, 42vw"
+                unoptimized
               />
               <span>ADONIS / LEADERSHIP</span>
             </div>
