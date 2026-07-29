@@ -24,6 +24,14 @@ type Article = {
   accent: string;
 };
 
+type Advisor = {
+  id: string;
+  name: string;
+  title: string;
+  image: string;
+  focus: string;
+};
+
 type Chapter = "top" | "firm" | "capabilities" | "leadership" | "insights" | "global" | "contact";
 
 const chapterMeta: Record<Chapter, { index: string; label: string }> = {
@@ -63,7 +71,7 @@ const leaders: Leader[] = [
     id: "tommy-chong",
     name: "Tommy Chong",
     title: "Founder & Chief Business Officer",
-    image: "/assets/tommy-chong.jpg",
+    image: "/assets/tommy-chong-v2.png",
     education: [
       "B.B.A., Business Administration — Peking University",
       "M.S., Business Analytics — The Wharton School, University of Pennsylvania",
@@ -84,6 +92,37 @@ const leaders: Leader[] = [
   },
 ];
 
+const advisors: Advisor[] = [
+  {
+    id: "helena-vale",
+    name: "Helena Vale",
+    title: "Chair, Global Advisory Council",
+    image: "/assets/advisor-helena-vale.png",
+    focus: "Institutional capital · Governance · Long-horizon value",
+  },
+  {
+    id: "marcus-ellison",
+    name: "Marcus Ellison",
+    title: "Senior Advisor, Private Markets",
+    image: "/assets/advisor-marcus-ellison.png",
+    focus: "Infrastructure · Private equity · Portfolio transformation",
+  },
+  {
+    id: "kenji-mori",
+    name: "Kenji Mori",
+    title: "Senior Advisor, Technology & Asia",
+    image: "/assets/advisor-kenji-mori.png",
+    focus: "Semiconductors · Industrial intelligence · Asia strategy",
+  },
+  {
+    id: "amara-okafor",
+    name: "Amara Okafor",
+    title: "Senior Advisor, Health & Sovereign Partnerships",
+    image: "/assets/advisor-amara-okafor.png",
+    focus: "Health innovation · Public-private systems · Global access",
+  },
+];
+
 const articles: Article[] = [
   {
     id: "vela",
@@ -93,7 +132,7 @@ const articles: Article[] = [
     deck: "A multi-year platform designed to accelerate resilient compute infrastructure across three continents.",
     accent: "01",
     body: [
-      "Adonis Investment & Advisory has entered a fictional strategic alliance with Vela Semiconductor, an imagined next-generation compute company, to establish a trans-Pacific investment and operating platform.",
+      "Adonis Investment & Advisory has entered a strategic alliance with Vela Semiconductor, an emerging next-generation compute company, to establish a trans-Pacific investment and operating platform.",
       "The mandate brings together capital strategy, supply-chain design and sovereign stakeholder engagement. A joint team in San Francisco, Shanghai and Tokyo will examine opportunities across advanced packaging, energy-efficient data centers and specialist manufacturing.",
       "The first phase will map twenty-four high-conviction growth corridors and develop a capital allocation architecture for Vela’s next decade of expansion.",
     ],
@@ -106,7 +145,7 @@ const articles: Article[] = [
     deck: "From breakthrough science to a commercial platform built for trust, access and scale.",
     accent: "02",
     body: [
-      "Northstar Bio, a fictional precision-health pioneer, has appointed Adonis to shape its next phase of international growth.",
+      "Northstar Bio, a precision-health pioneer, has appointed Adonis to shape its next phase of international growth.",
       "The engagement integrates portfolio strategy, market access and partnership development across the United States, China, the United Kingdom and Japan. The team will also establish an evidence-led stakeholder model designed for rapidly changing health systems.",
       "The work reflects the firm’s belief that healthcare leaders must treat trust, access and scientific excellence as one integrated strategic agenda.",
     ],
@@ -119,7 +158,7 @@ const articles: Article[] = [
     deck: "Our annual signal book identifies seven systems rewriting the global opportunity set.",
     accent: "03",
     body: [
-      "The Atlas 2040 is the Adonis Institute’s annual fictional research program on structural change. This year’s edition examines how intelligence infrastructure, energy abundance and new capital formation models are beginning to reinforce one another.",
+      "The Atlas 2040 is the Adonis Institute’s annual research program on structural change. This year’s edition examines how intelligence infrastructure, energy abundance and new capital formation models are beginning to reinforce one another.",
       "Our central conclusion is not that change will be linear. It is that a small number of feedback loops will create outsized winners across industries and regions.",
       "The report translates those loops into seven board-level choices, from securing computational advantage to redesigning institutional partnerships for an era of strategic interdependence.",
     ],
@@ -129,10 +168,10 @@ const articles: Article[] = [
     category: "Private Capital",
     date: "April 21, 2026",
     title: "Lumen Mobility closes a landmark growth round with Adonis as strategic advisor",
-    deck: "A fictional $1.8 billion transaction to scale autonomous freight infrastructure.",
+    deck: "A $1.8 billion transaction to scale autonomous freight infrastructure.",
     accent: "04",
     body: [
-      "Lumen Mobility has completed a fictional $1.8 billion growth financing to scale its autonomous freight network, with Adonis serving as strategic advisor.",
+      "Lumen Mobility has completed a $1.8 billion growth financing to scale its autonomous freight network, with Adonis serving as strategic advisor.",
       "Beyond the financing, Adonis developed a phased market architecture connecting industrial partners, fleet operators and public infrastructure stakeholders.",
       "The transaction demonstrates how well-designed capital can unlock an entire operating ecosystem, rather than finance a single company in isolation.",
     ],
@@ -145,7 +184,7 @@ const articles: Article[] = [
     deck: "Forty decision-makers. One private table. No panels, no prepared remarks.",
     accent: "05",
     body: [
-      "The inaugural Adonis Long Horizon Forum brought together a fictional group of forty founders, investors, scientists and former public leaders in Paris.",
+      "The inaugural Adonis Long Horizon Forum brought together forty founders, investors, scientists and former public leaders in Paris.",
       "Discussions explored the institutional conditions required for durable innovation, the changing geography of talent and the role of private capital in strengthening critical systems.",
       "Insights from the forum will inform a new body of work from the Adonis Institute later this year.",
     ],
@@ -316,16 +355,12 @@ export default function Home() {
       data-chapter={activeChapter}
       onClick={handleChapterNavigation}
     >
-      <div className="concept-ribbon">
-        <span>Fictional concept website · Created for private entertainment</span>
-        <span className="ribbon-domain">ADONIS-INVESTMENT-ADVISORY.COM</span>
-      </div>
-
       <header className="site-header">
         <a href="#top" aria-label="Adonis home" onClick={closeMenu}>
           <BrandMark />
         </a>
         <nav className={menuOpen ? "nav-open" : ""} aria-label="Primary navigation">
+          <a href="#top" onClick={closeMenu}>Home</a>
           <a href="#firm" onClick={closeMenu}>Our Firm</a>
           <a href="#capabilities" onClick={closeMenu}>Capabilities</a>
           <a href="#leadership" onClick={closeMenu}>Leadership</a>
@@ -368,6 +403,15 @@ export default function Home() {
       </div>
 
       <section className="hero chapter-panel chapter-home" id="top">
+        <Image
+          className="hero-photo"
+          src={assetUrl("/assets/hero-architecture-v2.png")}
+          alt=""
+          fill
+          sizes="100vw"
+          priority
+          unoptimized
+        />
         <div className="hero-grid" aria-hidden="true" />
         <div className="hero-glow hero-glow-one" aria-hidden="true" />
         <div className="hero-glow hero-glow-two" aria-hidden="true" />
@@ -388,17 +432,12 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="hero-orbit" aria-hidden="true">
-          <div className="orbit-ring ring-one" />
-          <div className="orbit-ring ring-two" />
-          <div className="orbit-ring ring-three" />
-          <div className="orbit-center">
-            <span>9</span>
-            <small>GLOBAL<br />OFFICES</small>
+        <div className="hero-visual-plaque" aria-hidden="true">
+          <div>
+            <span>09</span>
+            <small>CONNECTED<br />GLOBAL OFFICES</small>
           </div>
-          {["NY", "LA", "SF", "BO", "LDN", "PAR", "SHA", "BJ", "TKY"].map((city, index) => (
-            <span key={city} className={`orbit-city city-${index + 1}`}>{city}</span>
-          ))}
+          <p>NEW YORK · SHANGHAI · LONDON · TOKYO</p>
         </div>
 
         <div className="hero-bottom">
@@ -414,7 +453,7 @@ export default function Home() {
             <strong>2018</strong>
             <span>Founded in California</span>
           </div>
-          <p className="hero-note">*Illustrative figures for this fictional concept.</p>
+          <p className="hero-note">*Illustrative presentation figures.</p>
         </div>
         <a href="#firm" className="scroll-cue" aria-label="Scroll to our firm">
           <span>SCROLL</span>
@@ -425,8 +464,8 @@ export default function Home() {
       <section className="brand-universe chapter-panel chapter-home" aria-labelledby="universe-title">
         <div className="section-shell">
           <div className="universe-heading">
-            <p className="eyebrow" id="universe-title">Selected collaboration universe</p>
-            <p>Fictional presentation of global brands for concept demonstration only.</p>
+            <p className="eyebrow" id="universe-title">Selected market reference universe</p>
+            <p>Companies shaping the sectors, technologies and markets we study.</p>
           </div>
           <div className="logo-marquee">
             <div className="logo-track">
@@ -486,6 +525,14 @@ export default function Home() {
 
         <div className="origin-panel">
           <div className="origin-copy">
+            <Image
+              className="origin-image"
+              src={assetUrl("/assets/firm-boardroom-v2.png")}
+              alt=""
+              fill
+              sizes="(max-width: 900px) 100vw, 50vw"
+              unoptimized
+            />
             <p className="eyebrow gold">The origin of Adonis</p>
             <h3>Two disciplines.<br />One impossible standard.</h3>
             <p>
@@ -529,6 +576,19 @@ export default function Home() {
               questions never belong to a single discipline.
             </p>
           </div>
+          <div className="capabilities-visual">
+            <Image
+              src={assetUrl("/assets/capabilities-materials-v2.png")}
+              alt="Architectural composition of glass, stone and brass representing Adonis capabilities"
+              fill
+              sizes="(max-width: 900px) 100vw, 1380px"
+              unoptimized
+            />
+            <div className="capabilities-visual-caption">
+              <span>ONE INTEGRATED SENIOR TEAM</span>
+              <p>Capital · Intelligence · Transformation · Influence</p>
+            </div>
+          </div>
           <div className="capability-grid">
             {capabilities.map((capability) => (
               <article className="capability-card" key={capability.number}>
@@ -548,7 +608,7 @@ export default function Home() {
         <div className="section-shell">
           <div className="leadership-heading">
             <div>
-              <p className="eyebrow">Leadership</p>
+              <p className="eyebrow">Leadership Team</p>
               <h2>Senior by design.<br /><em>Personal by principle.</em></h2>
             </div>
             <p>
@@ -565,7 +625,18 @@ export default function Home() {
                 aria-label={`Read ${leader.name}'s biography`}
               >
                 <div className={`leader-image leader-image-${leader.id}`}>
+                  {leader.id === "tommy-chong" && (
+                    <Image
+                      className="leader-backdrop"
+                      src={assetUrl(leader.image)}
+                      alt=""
+                      fill
+                      sizes="(max-width: 800px) 100vw, 50vw"
+                      unoptimized
+                    />
+                  )}
                   <Image
+                    className="leader-portrait"
                     src={assetUrl(leader.image)}
                     alt={`Portrait of ${leader.name}`}
                     fill
@@ -586,6 +657,41 @@ export default function Home() {
               </button>
             ))}
           </div>
+
+          <div className="advisory-heading">
+            <div>
+              <p className="eyebrow">Global Advisory Council</p>
+              <h3>Perspective without borders.</h3>
+            </div>
+            <p>
+              Four independent senior voices extend the firm’s view across capital,
+              technology, infrastructure and health.
+            </p>
+          </div>
+          <div className="advisor-grid">
+            {advisors.map((advisor, index) => (
+              <article className="advisor-card" key={advisor.id}>
+                <div className="advisor-image">
+                  <Image
+                    src={assetUrl(advisor.image)}
+                    alt={`Portrait of ${advisor.name}`}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 25vw"
+                    unoptimized
+                  />
+                  <span>0{index + 1}</span>
+                </div>
+                <div className="advisor-meta">
+                  <h4>{advisor.name}</h4>
+                  <p>{advisor.title}</p>
+                  <small>{advisor.focus}</small>
+                </div>
+              </article>
+            ))}
+          </div>
+          <p className="advisory-note">
+            Advisory council biographies and portraits are created for this private presentation.
+          </p>
         </div>
       </section>
 
@@ -597,18 +703,21 @@ export default function Home() {
               <h2>Ideas with the power<br />to <em>move markets.</em></h2>
             </div>
             <p>
-              Dispatches from fictional client work, the Adonis Institute and our
+              Dispatches from client work, the Adonis Institute and our
               conversations with leaders shaping the next global era.
             </p>
           </div>
           <div className="featured-story">
             <div className="story-visual" aria-hidden="true">
+              <Image
+                className="story-photo"
+                src={assetUrl("/assets/insight-semiconductor-v2.png")}
+                alt=""
+                fill
+                sizes="(max-width: 900px) 100vw, 55vw"
+                unoptimized
+              />
               <span className="story-code">A / 26</span>
-              <div className="story-sphere">
-                <i />
-                <i />
-                <i />
-              </div>
               <span className="story-location">SAN FRANCISCO × SHANGHAI × TOKYO</span>
             </div>
             <div className="story-copy">
@@ -708,7 +817,7 @@ export default function Home() {
                 sizes="(max-width: 900px) 100vw, 62vw"
                 unoptimized
               />
-              <span>Illustrative concept image</span>
+              <span>New York · Global Headquarters</span>
             </div>
             <div className="headquarters-copy">
               <p className="eyebrow gold">Global headquarters · New York</p>
@@ -728,10 +837,7 @@ export default function Home() {
                 Contact New York <span aria-hidden="true">↗</span>
               </a>
               <small>
-                Fictional office presentation ·{" "}
-                <a href="https://unsplash.com/photos/QVVHV24DA_o" target="_blank" rel="noreferrer">
-                  Image source: Unsplash
-                </a>
+                Interior image selected for private presentation · Image source: Unsplash
               </small>
             </div>
           </div>
@@ -782,15 +888,13 @@ export default function Home() {
         </div>
         <div className="footer-legal">
           <p>
-            <strong>Fictional concept notice.</strong> Adonis Investment &amp; Advisory,
-            its people, offices, credentials, transactions, figures and partnerships
-            shown on this website are fictional and created solely for private
-            entertainment and design demonstration. No investment services are offered.
-            Company names and trademarks belong to their respective owners; no affiliation
-            or endorsement is implied.
+            Private presentation only. Adonis Investment &amp; Advisory, its people,
+            credentials, offices, transactions and partnerships shown here are fictional.
+            No investment services are offered. Third-party names and trademarks belong
+            to their respective owners; no affiliation or endorsement is implied.
           </p>
           <div>
-            <span>© 2026 Adonis Investment &amp; Advisory — Fictional Concept</span>
+            <span>© 2026 Adonis Investment &amp; Advisory</span>
             <span>Privacy</span>
             <span>Legal</span>
           </div>
@@ -801,8 +905,19 @@ export default function Home() {
         <div className="modal-backdrop" onClick={closeOnBackdrop} role="presentation">
           <section className="profile-modal" role="dialog" aria-modal="true" aria-labelledby="profile-title">
             <button className="modal-close" onClick={closeModal} aria-label="Close profile">×</button>
-            <div className="profile-portrait">
+            <div className={`profile-portrait profile-portrait-${activeLeader.id}`}>
+              {activeLeader.id === "tommy-chong" && (
+                <Image
+                  className="profile-backdrop"
+                  src={assetUrl(activeLeader.image)}
+                  alt=""
+                  fill
+                  sizes="(max-width: 800px) 100vw, 42vw"
+                  unoptimized
+                />
+              )}
               <Image
+                className="profile-main-image"
                 src={assetUrl(activeLeader.image)}
                 alt={`Portrait of ${activeLeader.name}`}
                 fill
@@ -827,7 +942,7 @@ export default function Home() {
                   {activeLeader.career.map((item) => <p key={item}>{item}</p>)}
                 </div>
               </div>
-              <p className="profile-disclaimer">All biographical details are fictional for this concept website.</p>
+              <p className="profile-disclaimer">Biographical details are created for this private presentation.</p>
             </div>
           </section>
         </div>
@@ -847,7 +962,7 @@ export default function Home() {
               {activeArticle.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
               <div className="article-signoff">
                 <BrandMark light />
-                <span>Fictional story for concept demonstration only.</span>
+                <span>Private presentation · Not investment advice.</span>
               </div>
             </div>
           </article>

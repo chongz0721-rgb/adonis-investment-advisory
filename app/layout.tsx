@@ -20,16 +20,16 @@ export const metadata: Metadata = {
   metadataBase: new URL(publicSiteUrl),
   title: "Adonis Investment & Advisory | Conviction Beyond Consensus",
   description:
-    "A fictional global investment and advisory firm concept — private capital, strategic intelligence and operating judgment across nine global cities.",
+    "Adonis Investment & Advisory brings private capital, strategic intelligence and operating judgment together across nine global cities.",
   openGraph: {
     title: "Adonis Investment & Advisory",
-    description: "Conviction beyond consensus. A fictional global investment and advisory firm concept.",
+    description: "Conviction beyond consensus. Global investment intelligence and senior advisory.",
     images: [{ url: `${publicSiteUrl}/og.png`, width: 1734, height: 907, alt: "Adonis Investment & Advisory" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Adonis Investment & Advisory",
-    description: "Conviction beyond consensus. A fictional global investment and advisory firm concept.",
+    description: "Conviction beyond consensus. Global investment intelligence and senior advisory.",
     images: [`${publicSiteUrl}/og.png`],
   },
 };
