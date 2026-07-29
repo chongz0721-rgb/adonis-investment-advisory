@@ -8,6 +8,7 @@ type Leader = {
   name: string;
   title: string;
   image: string;
+  profileImage: string;
   education: string[];
   career: string[];
   quote: string;
