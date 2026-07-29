@@ -154,38 +154,38 @@ const articles: Article[] = [
 ];
 
 const offices = [
-  ["New York", "88 Hudson Square, 41st Floor", "+1 212 555 0188", "38", "31"],
-  ["Los Angeles", "725 Grand Meridian, Suite 2600", "+1 310 555 0146", "23", "44"],
-  ["San Francisco", "180 Mission Vista, 32nd Floor", "+1 415 555 0164", "18", "35"],
-  ["Boston", "60 Beacon Harbor, 19th Floor", "+1 617 555 0129", "42", "27"],
-  ["London", "14 Hanover Passage, Mayfair", "+44 20 7946 0182", "53", "27"],
-  ["Paris", "28 Avenue Montaigne, 7e", "+33 1 87 65 20 18", "58", "37"],
-  ["Shanghai", "288 Lujiazui Crescent, Tower II", "+86 21 5555 2018", "79", "46"],
-  ["Beijing", "16 Financial Garden, Chaoyang", "+86 10 5555 1818", "77", "34"],
-  ["Tokyo", "3-8 Marunouchi Gate, Chiyoda", "+81 3 5550 2018", "88", "40"],
+  { city: "New York", address: "88 Hudson Square, 41st Floor", phone: "+1 212 555 0188", left: 28, top: 36, headquarters: true },
+  { city: "Los Angeles", address: "725 Grand Meridian, Suite 2600", phone: "+1 310 555 0146", left: 16, top: 44 },
+  { city: "San Francisco", address: "180 Mission Vista, 32nd Floor", phone: "+1 415 555 0164", left: 13, top: 38 },
+  { city: "Boston", address: "60 Beacon Harbor, 19th Floor", phone: "+1 617 555 0129", left: 30, top: 33 },
+  { city: "London", address: "14 Hanover Passage, Mayfair", phone: "+44 20 7946 0182", left: 48, top: 29 },
+  { city: "Paris", address: "28 Avenue Montaigne, 7e", phone: "+33 1 87 65 20 18", left: 49, top: 34 },
+  { city: "Shanghai", address: "288 Lujiazui Crescent, Tower II", phone: "+86 21 5555 2018", left: 79, top: 42 },
+  { city: "Beijing", address: "16 Financial Garden, Chaoyang", phone: "+86 10 5555 1818", left: 77, top: 35 },
+  { city: "Tokyo", address: "3-8 Marunouchi Gate, Chiyoda", phone: "+81 3 5550 2018", left: 87, top: 40 },
 ];
 
 const companyUniverse = [
-  "Google",
-  "Microsoft",
-  "Amazon",
-  "Tesla",
-  "NVIDIA",
-  "Eli Lilly",
-  "Johnson & Johnson",
-  "Oracle",
-  "PwC",
-  "JPMorgan",
-  "Deloitte.",
-  "IBM",
-  "Salesforce",
-  "Apple",
-  "Meta",
-  "Adobe",
-  "Siemens",
-  "TSMC",
-  "SAP",
-  "TOYOTA",
+  { name: "Google", slug: "google", color: "#4285F4", mode: "symbol" },
+  { name: "Microsoft", slug: "microsoft", color: "#F25022", mode: "symbol" },
+  { name: "Amazon", slug: "amazon", color: "#FF9900", mode: "symbol" },
+  { name: "Tesla", slug: "tesla", color: "#CC0000", mode: "symbol" },
+  { name: "NVIDIA", slug: "nvidia", color: "#76B900", mode: "symbol" },
+  { name: "Eli Lilly", slug: "elililly", color: "#D52B1E", mode: "wordmark" },
+  { name: "Johnson & Johnson", slug: "johnsonandjohnson", color: "#EB1700", mode: "wordmark" },
+  { name: "Oracle", slug: "oracle", color: "#F80000", mode: "symbol" },
+  { name: "PwC", slug: "pwc", color: "#E0301E", mode: "wordmark" },
+  { name: "JPMorganChase", slug: "jpmorgan", color: "#0B6E9F", mode: "wordmark" },
+  { name: "Deloitte", slug: "deloitte", color: "#86BC25", mode: "wordmark" },
+  { name: "IBM", slug: "ibm", color: "#052FAD", mode: "symbol" },
+  { name: "Salesforce", slug: "salesforce", color: "#00A1E0", mode: "symbol" },
+  { name: "Apple", slug: "apple", color: "#111111", mode: "symbol" },
+  { name: "Meta", slug: "meta", color: "#0467DF", mode: "symbol" },
+  { name: "Adobe", slug: "adobe", color: "#FF0000", mode: "symbol" },
+  { name: "Siemens", slug: "siemens", color: "#009999", mode: "symbol" },
+  { name: "TSMC", slug: "tsmc", color: "#E21C2A", mode: "wordmark" },
+  { name: "SAP", slug: "sap", color: "#0FAAFF", mode: "symbol" },
+  { name: "Toyota", slug: "toyota", color: "#EB0A1E", mode: "symbol" },
 ];
 
 const capabilities = [
@@ -351,8 +351,30 @@ export default function Home() {
           <div className="logo-marquee">
             <div className="logo-track">
               {[...companyUniverse, ...companyUniverse].map((company, index) => (
-                <span className={`company-wordmark logo-${company.toLowerCase().replaceAll(/[^a-z]/g, "")}`} key={`${company}-${index}`}>
-                  {company}
+                <span className={`company-logo-card ${company.mode === "wordmark" ? "is-wordmark" : ""}`} key={`${company.slug}-${index}`}>
+                  {company.mode === "wordmark" ? (
+                    <Image
+                      className={`company-logo-image logo-image-${company.slug}`}
+                      src={assetUrl(`/assets/logos/${company.slug}.svg`)}
+                      alt={`${company.name} logo`}
+                      width={180}
+                      height={54}
+                      unoptimized
+                    />
+                  ) : (
+                    <>
+                      <span
+                        className="company-logo-symbol"
+                        aria-hidden="true"
+                        style={{
+                          backgroundColor: company.color,
+                          maskImage: `url("${assetUrl(`/assets/logos/${company.slug}.svg`)}")`,
+                          WebkitMaskImage: `url("${assetUrl(`/assets/logos/${company.slug}.svg`)}")`,
+                        }}
+                      />
+                      <span className="company-logo-name">{company.name}</span>
+                    </>
+                  )}
                 </span>
               ))}
             </div>
@@ -550,42 +572,87 @@ export default function Home() {
             </p>
           </div>
           <div className="global-layout">
-            <div className="world-stage" aria-label="Stylized map showing nine global offices">
-              <div className="world-grid" />
-              <span className="world-axis axis-one" />
-              <span className="world-axis axis-two" />
-              <span className="world-axis axis-three" />
-              {offices.map(([city, , , left, top], index) => (
+            <div className="world-stage" aria-label="World map showing nine global offices">
+              <Image
+                className="world-map-art"
+                src={assetUrl("/assets/world-map.svg")}
+                alt=""
+                fill
+                sizes="(max-width: 900px) 100vw, 68vw"
+                unoptimized
+              />
+              <div className="world-map-glow" aria-hidden="true" />
+              {offices.map((office, index) => (
                 <span
-                  className="map-marker"
-                  style={{ left: `${left}%`, top: `${top}%` }}
-                  key={city}
+                  className={`map-marker ${office.headquarters ? "map-headquarters" : ""}`}
+                  style={{ left: `${office.left}%`, top: `${office.top}%` }}
+                  key={office.city}
                 >
                   <i />
-                  <b>{city.toUpperCase()}</b>
-                  <small>0{index + 1}</small>
+                  <b>{office.city}</b>
+                  <small>{office.headquarters ? "GLOBAL HQ" : `0${index + 1}`}</small>
                 </span>
               ))}
               <div className="map-caption">
-                <span>38° N</span>
+                <span>ROBINSON PROJECTION</span>
                 <span>GLOBAL ADVISORY NETWORK</span>
-                <span>2026</span>
+                <span>9 CITIES · 2026</span>
               </div>
             </div>
             <div className="office-list">
-              {offices.map(([city, address, phone], index) => (
-                <details key={city} open={index === 0}>
+              {offices.map((office, index) => (
+                <details key={office.city} open={index === 0}>
                   <summary>
                     <span>0{index + 1}</span>
-                    <strong>{city}</strong>
+                    <strong>
+                      {office.city}
+                      {office.headquarters && <small>Global HQ</small>}
+                    </strong>
                     <i aria-hidden="true">+</i>
                   </summary>
                   <div>
-                    <p>{address}</p>
-                    <a href={`tel:${phone.replaceAll(" ", "")}`}>{phone}</a>
+                    <p>{office.address}</p>
+                    <a href={`tel:${office.phone.replaceAll(" ", "")}`}>{office.phone}</a>
                   </div>
                 </details>
               ))}
+            </div>
+          </div>
+
+          <div className="headquarters-feature">
+            <div className="headquarters-image">
+              <Image
+                src={assetUrl("/assets/new-york-office.jpg")}
+                alt="Illustrative luxury office interior representing the Adonis New York headquarters"
+                fill
+                sizes="(max-width: 900px) 100vw, 62vw"
+                unoptimized
+              />
+              <span>Illustrative concept image</span>
+            </div>
+            <div className="headquarters-copy">
+              <p className="eyebrow gold">Global headquarters · New York</p>
+              <h3>Where capital meets consequence.</h3>
+              <p className="headquarters-address">88 Hudson Square · 41st Floor · New York</p>
+              <p>
+                The firm’s global command center brings investment leaders, operating
+                partners and senior advisors together around one table — with direct
+                links to every Adonis office worldwide.
+              </p>
+              <div className="headquarters-facts">
+                <span><strong>41</strong>Floor</span>
+                <span><strong>24/9</strong>Global coverage</span>
+                <span><strong>2019</strong>Established</span>
+              </div>
+              <a href="mailto:concierge@adonis-investment-advisory.com" className="text-link">
+                Contact New York <span aria-hidden="true">↗</span>
+              </a>
+              <small>
+                Fictional office presentation ·{" "}
+                <a href="https://unsplash.com/photos/QVVHV24DA_o" target="_blank" rel="noreferrer">
+                  Image source: Unsplash
+                </a>
+              </small>
             </div>
           </div>
         </div>
