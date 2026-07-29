@@ -1266,21 +1266,12 @@ h2 em {
 }
 
 .leader-image-tommy-chong {
-  background:
-    radial-gradient(circle at 50% 34%, rgba(244, 240, 232, 0.24), transparent 38%),
-    #9ba4b0;
+  background: #a79b91;
 }
 
 .leader-image-tommy-chong .leader-portrait {
-  object-fit: contain;
-  transform: scale(0.95);
-}
-
-.leader-backdrop {
-  z-index: 0;
   object-fit: cover;
-  filter: blur(24px) saturate(0.6) brightness(0.88);
-  transform: scale(1.12);
+  object-position: center 42%;
 }
 
 .leader-card:hover .leader-portrait {
@@ -1290,10 +1281,6 @@ h2 em {
 
 .leader-card:hover .leader-image-adonis-yang .leader-portrait {
   transform: scale(1.19);
-}
-
-.leader-card:hover .leader-image-tommy-chong .leader-portrait {
-  transform: scale(0.98);
 }
 
 .leader-number,
@@ -2272,33 +2259,15 @@ footer {
 }
 
 .profile-portrait-tommy-chong {
-  background: #929ba8;
-}
-
-.profile-portrait-tommy-chong::before {
-  position: absolute;
-  z-index: 0;
-  inset: -28px;
   background:
     radial-gradient(circle at 50% 34%, rgba(244, 240, 232, 0.2), transparent 38%),
-    linear-gradient(145deg, #7f8998, #b3b9c0);
-  content: "";
-  filter: blur(22px) saturate(0.65);
-  transform: scale(1.08);
+    linear-gradient(145deg, #8f8379, #b8afa8);
 }
 
 .profile-portrait-tommy-chong .profile-main-image {
   z-index: 1;
   object-fit: contain;
   object-position: center;
-  transform: scale(0.9);
-}
-
-.profile-backdrop {
-  z-index: 0;
-  object-fit: cover;
-  filter: blur(24px) saturate(0.55) brightness(0.9);
-  transform: scale(1.12);
 }
 
 .profile-portrait > span {
@@ -2691,9 +2660,6 @@ footer {
     height: 68vh;
   }
 
-  .profile-portrait-tommy-chong .profile-main-image {
-    transform: scale(0.96);
-  }
 }
 
 @media (max-width: 680px) {

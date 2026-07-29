@@ -625,16 +625,6 @@ export default function Home() {
                 aria-label={`Read ${leader.name}'s biography`}
               >
                 <div className={`leader-image leader-image-${leader.id}`}>
-                  {leader.id === "tommy-chong" && (
-                    <Image
-                      className="leader-backdrop"
-                      src={assetUrl(leader.image)}
-                      alt=""
-                      fill
-                      sizes="(max-width: 800px) 100vw, 50vw"
-                      unoptimized
-                    />
-                  )}
                   <Image
                     className="leader-portrait"
                     src={assetUrl(leader.image)}
@@ -906,16 +896,6 @@ export default function Home() {
           <section className="profile-modal" role="dialog" aria-modal="true" aria-labelledby="profile-title">
             <button className="modal-close" onClick={closeModal} aria-label="Close profile">×</button>
             <div className={`profile-portrait profile-portrait-${activeLeader.id}`}>
-              {activeLeader.id === "tommy-chong" && (
-                <Image
-                  className="profile-backdrop"
-                  src={assetUrl(activeLeader.image)}
-                  alt=""
-                  fill
-                  sizes="(max-width: 800px) 100vw, 42vw"
-                  unoptimized
-                />
-              )}
               <Image
                 className="profile-main-image"
                 src={assetUrl(activeLeader.image)}
