@@ -93,6 +93,30 @@ const leaders: Leader[] = [
       "At Adonis, Tommy designed the firm’s One Table model: investors, operators, scientists and policy specialists working as a single senior team. He also oversees the Global Fellows network, a curated community of former executives and technical leaders who join client teams at pivotal moments.",
     ],
   },
+  {
+    id: "ryan-peng",
+    name: "Ryan Peng",
+    title: "Chief Operating Officer",
+    image: "/assets/ryan-peng-polo.png",
+    profileImage: "/assets/ryan-peng-polo.png",
+    education: [
+      "B.A. (Hons), Management Studies — University of Cambridge",
+      "M.S. and Ph.D., Business Operations — Tsinghua University",
+    ],
+    career: [
+      "Former EVP, Commercial Operations, Anker Innovations",
+      "Former Head of Commercial Operations, East China, Microsoft",
+      "Former President, China Business, SF Holding",
+      "Former Lecturer in Management, University of Liverpool",
+    ],
+    quote:
+      "Operational excellence is the discipline of turning ambition into a system that performs at scale.",
+    bio: [
+      "Ryan Peng serves as Chief Operating Officer of Adonis Investment & Advisory, leading the firm’s global operating model, execution discipline and institutional infrastructure across nine offices.",
+      "Across consumer technology, enterprise software and logistics, Ryan built a reputation for transforming complex commercial organizations into focused operating systems. At Anker Innovations, he aligned international growth with rigorous commercial execution; at Microsoft, he led East China business operations at the intersection of clients, technology and regional strategy. He later oversaw China business at SF Holding, where scale, speed and service quality had to perform as one.",
+      "At Adonis, Ryan designed the firm’s Global Execution Office, connecting talent, knowledge, capital and client delivery through one operating cadence. His academic work in management adds a distinctive dimension to his leadership: every system must be measurable, but every transformation ultimately depends on people.",
+    ],
+  },
 ];
 
 const advisors: Advisor[] = [
@@ -626,7 +650,7 @@ export default function Home() {
             </div>
             <p>
               Every relationship is led by the people whose names are on the firm.
-              Select a founder to read their full story.
+              Select a leader to read their full story.
             </p>
           </div>
           <div className="leader-grid">
@@ -920,7 +944,9 @@ export default function Home() {
               <span>ADONIS / LEADERSHIP</span>
             </div>
             <div className="profile-content">
-              <p className="eyebrow gold">Founder profile</p>
+              <p className="eyebrow gold">
+                {activeLeader.title.startsWith("Founder") ? "Founder profile" : "Executive profile"}
+              </p>
               <h2 id="profile-title">{activeLeader.name}</h2>
               <h3>{activeLeader.title}</h3>
               <blockquote>“{activeLeader.quote}”</blockquote>
