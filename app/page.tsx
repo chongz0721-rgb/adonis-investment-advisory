@@ -96,7 +96,7 @@ const leaders: Leader[] = [
   {
     id: "ryan-peng",
     name: "Ryan Peng",
-    title: "Chief Operating Officer",
+    title: "Founder & Chief Operating Officer",
     image: "/assets/ryan-peng-polo.png",
     profileImage: "/assets/ryan-peng-polo.png",
     education: [
@@ -112,9 +112,32 @@ const leaders: Leader[] = [
     quote:
       "Operational excellence is the discipline of turning ambition into a system that performs at scale.",
     bio: [
-      "Ryan Peng serves as Chief Operating Officer of Adonis Investment & Advisory, leading the firm’s global operating model, execution discipline and institutional infrastructure across nine offices.",
+      "Ryan Peng is a Founder and Chief Operating Officer of Adonis Investment & Advisory, leading the firm’s global operating model, execution discipline and institutional infrastructure across nine offices.",
       "Across consumer technology, enterprise software and logistics, Ryan built a reputation for transforming complex commercial organizations into focused operating systems. At Anker Innovations, he aligned international growth with rigorous commercial execution; at Microsoft, he led East China business operations at the intersection of clients, technology and regional strategy. He later oversaw China business at SF Holding, where scale, speed and service quality had to perform as one.",
       "At Adonis, Ryan designed the firm’s Global Execution Office, connecting talent, knowledge, capital and client delivery through one operating cadence. His academic work in management adds a distinctive dimension to his leadership: every system must be measurable, but every transformation ultimately depends on people.",
+    ],
+  },
+  {
+    id: "hanxuan-yang",
+    name: "Hanxuan Yang",
+    title: "Founder & Chief Technology Officer",
+    image: "/assets/hanxuan-yang-polo.png",
+    profileImage: "/assets/hanxuan-yang-polo.png",
+    education: [
+      "B.Eng. and M.Eng., Electrical & Electronic Engineering — Imperial College London",
+      "Ph.D., Electrical Engineering (Autonomous Systems & Control) — Stanford University",
+    ],
+    career: [
+      "Former Senior Vice President & President, Asia Technology, Samsung Electronics, Device Solutions",
+      "Former Executive Vice President & Chief Technology Strategy Officer, ASML Asia Pacific",
+      "Former Senior Vice President, Advanced Process Integration & Global R&D Partnerships, TSMC",
+    ],
+    quote:
+      "Technology advantage is never a single breakthrough. It is the discipline of turning physics, architecture and execution into a system others cannot easily copy.",
+    bio: [
+      "Hanxuan Yang is a Founder and Chief Technology Officer of Adonis Investment & Advisory, where he leads the firm’s technology thesis, technical diligence and systems architecture across semiconductors, AI infrastructure and intelligent automation.",
+      "Trained across electrical engineering, control systems and autonomous machines, Hanxuan has spent his career at the frontier of semiconductor platforms. At Samsung Electronics’ Device Solutions division, he directed Asia technology strategy across advanced memory, foundry and system-semiconductor roadmaps. He later shaped technology strategy at ASML and global R&D partnerships at TSMC, connecting process physics, supply-chain resilience and commercial scale.",
+      "At Adonis, Hanxuan built the firm’s Technology Council and proprietary technical diligence model. He works with boards and investors on decisions where a single architecture choice can redefine a decade of capital allocation, and sponsors the firm’s work in compute, robotics and industrial intelligence.",
     ],
   },
 ];
@@ -667,7 +690,7 @@ export default function Home() {
                     src={assetUrl(leader.image)}
                     alt={`Portrait of ${leader.name}`}
                     fill
-                    sizes="(max-width: 800px) 100vw, 50vw"
+                    sizes="(max-width: 680px) 100vw, (max-width: 1180px) 50vw, 25vw"
                     priority={index === 0}
                     unoptimized
                   />

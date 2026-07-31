@@ -1266,9 +1266,9 @@ h2 em {
 
 .leader-grid {
   display: grid;
-  width: min(1180px, 100%);
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
+  width: min(1320px, 100%);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
   margin: 0 auto;
 }
 
@@ -1325,6 +1325,16 @@ h2 em {
   transform: scale(1.24);
 }
 
+.leader-image-hanxuan-yang {
+  background: #a89e95;
+}
+
+.leader-image-hanxuan-yang .leader-portrait {
+  object-fit: cover;
+  object-position: center 16%;
+  transform: scale(1.12);
+}
+
 .leader-card:hover .leader-portrait {
   filter: saturate(0.95) contrast(1.02);
   transform: scale(1.025);
@@ -1336,6 +1346,10 @@ h2 em {
 
 .leader-card:hover .leader-image-ryan-peng .leader-portrait {
   transform: scale(1.28);
+}
+
+.leader-card:hover .leader-image-hanxuan-yang .leader-portrait {
+  transform: scale(1.16);
 }
 
 .leader-number,
@@ -1374,8 +1388,13 @@ h2 em {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+  gap: 12px;
   padding: 26px 2px;
   border-bottom: 1px solid rgba(17, 27, 34, 0.22);
+}
+
+.leader-meta > div {
+  min-width: 0;
 }
 
 .leader-meta h3 {
@@ -1397,10 +1416,12 @@ h2 em {
 }
 
 .leader-meta > span {
+  flex: 0 0 auto;
   margin-bottom: 4px;
   font-size: 8px;
   font-weight: 650;
   letter-spacing: 0.17em;
+  white-space: nowrap;
 }
 
 .advisory-heading {
@@ -2334,6 +2355,16 @@ footer {
   object-position: center top;
 }
 
+.profile-portrait-hanxuan-yang {
+  background: #968d85;
+}
+
+.profile-portrait-hanxuan-yang .profile-main-image {
+  z-index: 1;
+  object-fit: cover;
+  object-position: center top;
+}
+
 .profile-portrait > span {
   position: absolute;
   z-index: 2;
@@ -2572,6 +2603,11 @@ footer {
   .leader-image {
     height: auto;
     aspect-ratio: 4 / 5;
+  }
+
+  .leader-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
   }
 
   .advisor-grid {
