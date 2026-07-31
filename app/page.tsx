@@ -66,7 +66,7 @@ const leaders: Leader[] = [
     bio: [
       "Adonis Yang founded Adonis Investment & Advisory in 2018 with a singular premise: the most consequential investment decisions sit at the intersection of technology, geopolitics and human judgment.",
       "A systems engineer by training and a strategist by instinct, Adonis became known for translating complex technical shifts into decisive capital agendas. At Oracle, he built a cross-market investment intelligence practice spanning cloud infrastructure, semiconductor economics and enterprise transformation. His subsequent work across healthcare and professional services gave him an unusually broad view of how reputation, regulation and capital compound.",
-      "Under his leadership, the firm expanded from a two-person advisory studio in Pasadena to nine global offices. He continues to chair the firm’s Investment Council and personally sponsors a small number of long-horizon transformation mandates each year.",
+      "Under his leadership, the firm expanded from a four-founder advisory studio in Pasadena to nine global offices. He continues to chair the firm’s Investment Council and personally sponsors a small number of long-horizon transformation mandates each year.",
     ],
   },
   {
@@ -119,7 +119,7 @@ const leaders: Leader[] = [
   },
   {
     id: "hanxuan-yang",
-    name: "Hanxuan Yang",
+    name: "Hank Yang",
     title: "Founder & Chief Technology Officer",
     image: "/assets/hanxuan-yang-polo.png",
     profileImage: "/assets/hanxuan-yang-polo.png",
@@ -135,9 +135,9 @@ const leaders: Leader[] = [
     quote:
       "Technology advantage is never a single breakthrough. It is the discipline of turning physics, architecture and execution into a system others cannot easily copy.",
     bio: [
-      "Hanxuan Yang is a Founder and Chief Technology Officer of Adonis Investment & Advisory, where he leads the firm’s technology thesis, technical diligence and systems architecture across semiconductors, AI infrastructure and intelligent automation.",
-      "Trained across electrical engineering, control systems and autonomous machines, Hanxuan has spent his career at the frontier of semiconductor platforms. At Samsung Electronics’ Device Solutions division, he directed Asia technology strategy across advanced memory, foundry and system-semiconductor roadmaps. He later shaped technology strategy at ASML and global R&D partnerships at TSMC, connecting process physics, supply-chain resilience and commercial scale.",
-      "At Adonis, Hanxuan built the firm’s Technology Council and proprietary technical diligence model. He works with boards and investors on decisions where a single architecture choice can redefine a decade of capital allocation, and sponsors the firm’s work in compute, robotics and industrial intelligence.",
+      "Hank Yang is a Founder and Chief Technology Officer of Adonis Investment & Advisory, where he leads the firm’s technology thesis, technical diligence and systems architecture across semiconductors, AI infrastructure and intelligent automation.",
+      "Trained across electrical engineering, control systems and autonomous machines, Hank has spent his career at the frontier of semiconductor platforms. At Samsung Electronics’ Device Solutions division, he directed Asia technology strategy across advanced memory, foundry and system-semiconductor roadmaps. He later shaped technology strategy at ASML and global R&D partnerships at TSMC, connecting process physics, supply-chain resilience and commercial scale.",
+      "At Adonis, Hank built the firm’s Technology Council and proprietary technical diligence model. He works with boards and investors on decisions where a single architecture choice can redefine a decade of capital allocation, and sponsors the firm’s work in compute, robotics and industrial intelligence.",
     ],
   },
 ];
@@ -574,8 +574,8 @@ export default function Home() {
               a select group of leaders at defining moments.
             </p>
             <p>
-              We were founded in 2018 by Adonis Yang and Tommy Chong after a late-night
-              conversation in Pasadena about a widening gap: capital had become more
+              We were founded in 2018 by Adonis Yang, Tommy Chong, Ryan Peng and Hank Yang
+              after a late-night working session in Pasadena about a widening gap: capital had become more
               abundant, yet truly integrated judgment had become rare. Their answer
               was a different kind of firm — one that could see like an investor,
               build like an operator and advise with absolute discretion.
@@ -594,9 +594,9 @@ export default function Home() {
               unoptimized
             />
             <p className="eyebrow gold">The origin of Adonis</p>
-            <h3>Two disciplines.<br />One impossible standard.</h3>
+            <h3>Four founders.<br />One impossible standard.</h3>
             <p>
-              From an original two-person studio, Adonis moved quickly: advising a
+              From an original four-founder studio, Adonis moved quickly: advising a
               transformative technology carve-out in its first year, opening New York
               and Shanghai in 2020, and establishing a connected nine-city platform
               by 2024.
